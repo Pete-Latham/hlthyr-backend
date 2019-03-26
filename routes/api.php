@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 
 $router->get('Meds', 'Meds@index');
 $router->get('/Meds/{med}', 'Meds@show');
+$router->get('/Users/{user}', 'Users@show');
 
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
