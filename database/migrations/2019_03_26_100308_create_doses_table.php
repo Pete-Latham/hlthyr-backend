@@ -20,9 +20,11 @@ class CreateDosesTable extends Migration
             $table->string('unit');
             $table->string('time');
             $table->integer('med_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
 
             $table->foreign("med_id")->references("id")->on("meds")->onDelete("cascade");
+            $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade");
         });
     }
 

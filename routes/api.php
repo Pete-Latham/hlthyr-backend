@@ -14,17 +14,11 @@ use Illuminate\Http\Request;
 */
 
 $router->get('Meds', 'Meds@index');
+
 $router->get('/Meds/{Med}', 'Meds@show');
 $router->get('/Users/{User}', 'Users@show');
 $router->get('/Users/{User}/Meds', 'Users@medsIndex');
 $router->get('/Users/{User}/Doses', 'Users@dosesIndex');
-
-
-
-
-
-
-
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();

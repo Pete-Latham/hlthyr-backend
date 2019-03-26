@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Med;
+use App\User;
+use App\Http\Resources\UserResource;
 
-class Meds extends Controller
+class Users extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,7 @@ class Meds extends Controller
      */
     public function index()
     {
-        return Med::all();
+        //
     }
 
     /**
@@ -34,10 +35,9 @@ class Meds extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show( Med $med)
+    public function show( User $user )
     {
-        // return Med::find( $id );
-        return $med;
+        return new UserResource($user);
     }
 
     /**
