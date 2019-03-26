@@ -62,4 +62,17 @@ class Users extends Controller
     {
         //
     }
+
+    public function medsIndex( $user )
+    {
+        // For a given user, return a list of all the IDs of
+        // the meds currently in use by that user.
+        $ourUser = User::find($user);
+        $ourMeds = $ourUser->meds;
+        $medList = [];
+        foreach ($ourMeds as $ourMed) {
+            array_push( $medList, $ourMed->id );
+        }
+        return $medList;
+    }
 }
