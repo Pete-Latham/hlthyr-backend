@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Med;
+use App\User;
+use App\Http\Resources\UserResource;
 
-class Meds extends Controller
+class Users extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,7 @@ class Meds extends Controller
      */
     public function index()
     {
-        return Med::all();
+        //
     }
 
     /**
@@ -34,10 +35,9 @@ class Meds extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show( Med $med)
+    public function show( User $user )
     {
-        // return Med::find( $id );
-        return $med;
+        return new UserResource($user);
     }
 
     /**
@@ -61,5 +61,24 @@ class Meds extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function medsIndex( $user )
+    {
+        // For a given user, return a list of all the IDs of
+        // the meds currently in use by that user.
+        $ourUser = User::find($user);
+        $ourMeds = $ourUser->meds;
+        $medList = array();
+        foreach ($ourMeds as $ourMed) {
+            $thisMed = array(
+                "id" => $ourMed->id,
+                "name" => $ourMed->name,
+                "stock" => $ourMed->pivot->stock,
+                "medColour" => $ourMed->pivot->medColour
+            );
+            array_push( $medList, $thisMed );
+        }
+        return $medList;
     }
 }
