@@ -48,7 +48,7 @@ class Users extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -105,4 +105,16 @@ class Users extends Controller
         }
         return $medList;
     }
+
+    public function storeMed(User $user, Request $request)
+    {
+        $user->meds()->detach($request['id']);
+        $user->meds()->attach($request['id'], ['stock'=>$request['stock'], 'medColour'=>$request['medColour']]);
+
+        return $user->meds;
+
+
+        
+    }
+
 }
