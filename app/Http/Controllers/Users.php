@@ -69,9 +69,15 @@ class Users extends Controller
         // the meds currently in use by that user.
         $ourUser = User::find($user);
         $ourMeds = $ourUser->meds;
-        $medList = [];
+        $medList = array();
         foreach ($ourMeds as $ourMed) {
-            array_push( $medList, $ourMed->id );
+            $thisMed = array(
+                "id" => $ourMed->id,
+                "name" => $ourMed->name,
+                "stock" => $ourMed->pivot->stock,
+                "medColour" => $ourMed->pivot->medColour
+            );
+            array_push( $medList, $thisMed );
         }
         return $medList;
     }
