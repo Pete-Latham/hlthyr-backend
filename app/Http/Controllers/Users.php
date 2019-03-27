@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Http\Resources\UserResource;
 
+
 class Users extends Controller
 {
     /**
@@ -18,6 +19,27 @@ class Users extends Controller
         //
     }
 
+
+    public function dosesIndex( $user )
+    {
+        $ourUser = User::find($user);
+        $ourDoses = $ourUser->doses;
+        $doseList = array();
+        foreach ($ourDoses as $ourDose) {
+            $thisDose = array(
+                'id' => $ourDose->id,
+                'med_id' => $ourDose->med_id,
+                'quantity' => $ourDose->quantity,
+                'unit' => $ourDose->unit,
+                'time' => $ourDose->time
+            );
+            $doseList[$ourDose->id] = $thisDose;
+        }
+        return $doseList;
+    }
+
+
+     
     /**
      * Store a newly created resource in storage.
      *
