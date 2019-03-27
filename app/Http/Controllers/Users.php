@@ -75,9 +75,11 @@ class Users extends Controller
                 "id" => $ourMed->id,
                 "name" => $ourMed->name,
                 "stock" => $ourMed->pivot->stock,
+                "desc" => $ourMed->desc,
+                "warnings" => $ourMed->warnings,
                 "medColour" => $ourMed->pivot->medColour
             );
-            array_push( $medList, $thisMed );
+            $medList[$ourMed->id] = $thisMed;
         }
         return $medList;
     }
