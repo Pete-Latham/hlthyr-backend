@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use App\Http\Resources\UserResource;
+use App\Dose;
 
-
-class Users extends Controller
+class Doses extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,27 +17,6 @@ class Users extends Controller
         //
     }
 
-
-    public function dosesIndex( $user )
-    {
-        $ourUser = User::find($user);
-        $ourDoses = $ourUser->doses;
-        $doseList = array();
-        foreach ($ourDoses as $ourDose) {
-            $thisDose = array(
-                'id' => $ourDose->id,
-                'med_id' => $ourDose->med_id,
-                'quantity' => $ourDose->quantity,
-                'unit' => $ourDose->unit,
-                'time' => $ourDose->time
-            );
-            $doseList[$ourDose->id] = $thisDose;
-        }
-        return $doseList;
-    }
-
-
-     
     /**
      * Store a newly created resource in storage.
      *
@@ -57,9 +34,9 @@ class Users extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show( User $user )
+    public function show($id)
     {
-        return new UserResource($user);
+        //
     }
 
     /**
