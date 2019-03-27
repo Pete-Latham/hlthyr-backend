@@ -23,3 +23,8 @@ $router->get('/Users/{User}/Doses', 'Users@dosesIndex');
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+
+
+// Call to get info (desc, warning) for a given med
+// Meds to return id, name, stock, colourcode for each med
+// (Object of objects preferred but array of objects acceptable)

@@ -12,7 +12,7 @@ class User extends Authenticatable
 
     public function meds()
     {
-        return $this->belongsToMany('App\Med');
+        return $this->belongsToMany('App\Med')->withPivot('stock','medColour');
     }
 
     /**
