@@ -34,10 +34,9 @@ class Meds extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show( Med $med)
+    public function show($id)
     {
-        // return Med::find( $id );
-        return $med;
+        return Med::find( $id );
     }
 
     /**

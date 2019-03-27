@@ -10,11 +10,6 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    public function meds()
-    {
-        return $this->belongsToMany('App\Med')->withPivot('stock','medColour');
-    }
-
     /**
      * The attributes that are mass assignable.
      *
