@@ -15,6 +15,7 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Med')->withPivot('stock','medColour');
     }
 
+
     /**
      * The attributes that are mass assignable.
      *
@@ -46,5 +47,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Dose::class);
     }
+
+
 
 }
