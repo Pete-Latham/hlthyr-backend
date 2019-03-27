@@ -15,7 +15,6 @@ class CreateDosesTable extends Migration
     {
         Schema::create('doses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
             $table->integer('quantity');
             $table->string('unit');
             $table->string('time');
