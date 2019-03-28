@@ -20,6 +20,8 @@ $router->get('/users/{user}/meds', 'Users@medsIndex');
 $router->get('/users/{user}/doses', 'Users@dosesIndex');
 
 $router->post('/users/{user}/med/', 'Users@storeMed');
+$router->post('/doses/', 'Doses@store');
+
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();

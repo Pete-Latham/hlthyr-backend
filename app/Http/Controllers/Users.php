@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Http\Resources\UserResource;
+use App\Http\Resources\postUserMedResource;
 
 
 class Users extends Controller
@@ -111,10 +112,9 @@ class Users extends Controller
         $user->meds()->detach($request['id']);
         $user->meds()->attach($request['id'], ['stock'=>$request['stock'], 'medColour'=>$request['medColour']]);
 
-        return $user->meds;
-
-
-        
+        return postUserMedResource::collection($user->meds);
     }
+
+    
 
 }

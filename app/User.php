@@ -10,12 +10,7 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    public function meds()
-    {
-        return $this->belongsToMany('App\Med')->withPivot('stock','medColour');
-    }
-
-
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -42,6 +37,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function meds()
+    {
+        return $this->belongsToMany('App\Med')->withPivot('stock','medColour');
+    }
+
 
     public function doses()
     {
