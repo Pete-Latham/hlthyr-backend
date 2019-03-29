@@ -39,6 +39,27 @@ class Users extends Controller
         return $doseList;
     }
 
+    public function medsIndex( $user )
+    {
+        // For a given user, return a list of all the IDs of
+        // the meds currently in use by that user.
+        $ourUser = User::find($user);
+        $ourMeds = $ourUser->meds;
+        $medList = array();
+        foreach ($ourMeds as $ourMed) {
+            $thisMed = array(
+                "id" => $ourMed->id,
+                "name" => $ourMed->name,
+                "stock" => $ourMed->pivot->stock,
+                "desc" => $ourMed->desc,
+                "warnings" => $ourMed->warnings,
+                "medColour" => $ourMed->pivot->medColour
+            );
+            $medList[$ourMed->id] = $thisMed;
+        }
+        return $medList;
+    }
+
 
      
     /**
@@ -86,26 +107,7 @@ class Users extends Controller
         //
     }
 
-    public function medsIndex( $user )
-    {
-        // For a given user, return a list of all the IDs of
-        // the meds currently in use by that user.
-        $ourUser = User::find($user);
-        $ourMeds = $ourUser->meds;
-        $medList = array();
-        foreach ($ourMeds as $ourMed) {
-            $thisMed = array(
-                "id" => $ourMed->id,
-                "name" => $ourMed->name,
-                "stock" => $ourMed->pivot->stock,
-                "desc" => $ourMed->desc,
-                "warnings" => $ourMed->warnings,
-                "medColour" => $ourMed->pivot->medColour
-            );
-            $medList[$ourMed->id] = $thisMed;
-        }
-        return $medList;
-    }
+    
 
     public function storeMed(User $user, Request $request)
     {
