@@ -24,6 +24,7 @@ $router->post('/doses/', 'Doses@store');
 $router->post('/users/', 'Auth\RegisterController@create');
 
 
+
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
